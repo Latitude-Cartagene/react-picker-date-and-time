@@ -1,9 +1,9 @@
 import { luminance } from 'luminance-js'
 import moment from 'moment'
+// TODO load all languages
 import 'moment/locale/de'
 import 'moment/locale/en-gb'
 import 'moment/locale/es'
-// TODO load all languages
 import 'moment/locale/fr'
 import React, { Component } from 'react'
 import withStyles from 'react-jss'
@@ -24,7 +24,8 @@ const styles = {
     borderTopRightRadius: 10,
     borderBottomLeftRadius: 10,
     borderBottomRightRadius: 10,
-    marginTop: 5
+    marginTop: 5,
+    ...props.style.calendar
   }),
   monthDisplay: (props) => ({
     fontSize: '1.3rem',
@@ -35,30 +36,36 @@ const styles = {
     padding: 10,
     display: 'flex',
     borderTopLeftRadius: 10,
-    borderTopRightRadius: 10
+    borderTopRightRadius: 10,
+    ...props.style.monthDisplay
   }),
-  monthSelected: {
+  monthSelected: (props) => ({
     flex: 1,
     borderTopLeftRadius: 10,
-    borderTopRightRadius: 10
-  },
-  previous: {
+    borderTopRightRadius: 10,
+    ...props.style.monthSelected
+  }),
+  previous: (props) => ({
     marginLeft: 10,
     cursor: 'pointer',
-  },
-  next: {
+    ...props.style.previous
+  }),
+  next: (props) => ({
     marginRight: 10,
     cursor: 'pointer',
-  },
-  days: {
+    ...props.style.next
+  }),
+  weekDays: (props) => ({
     display: 'flex',
-  },
-  day: (props) => ({
+    ...props.style.weekDays
+  }),
+  weekDay: (props) => ({
     color: props.style.first,
     padding: 3,
     textAlign: 'center',
     textTransform: 'uppercase',
-    width: '100%'
+    width: '100%',
+    ...props.style.weekDay
   }),
   todayButton: (props) => ({
     backgroundColor: props.style.first,
@@ -66,7 +73,8 @@ const styles = {
     cursor: 'pointer',
     padding: 5,
     borderBottomLeftRadius: 10,
-    borderBottomRightRadius: 10
+    borderBottomRightRadius: 10,
+    ...props.style.todayButton
   })
 }
 
@@ -168,9 +176,9 @@ class Calendar extends Component {
             { this.renderMonthLabel() }
             <span className={ classes.next } onClick={ () => this.changeMonth() }>&gt;</span>
           </div>
-          <div className={ classes.days }>
+          <div className={ classes.weekDays }>
             { this.state.days.map(day => {
-              return <span key={ day } className={ classes.day }>{ day.charAt(0) }</span>
+              return <span key={ day } className={ classes.weekDay }>{ day.charAt(0) }</span>
             }) }
           </div>
         </header>
