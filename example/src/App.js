@@ -37,6 +37,7 @@ export default class App extends Component {
           lang={'fr'}
           style={style}
           systemUS={false}
+          image={"assets/calendar.svg"}
           getSelectedDate={this.getSelectedDate}
         />
 
