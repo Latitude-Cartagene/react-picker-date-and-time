@@ -6,12 +6,16 @@ import ClickOutside from './ClickOutside'
 
 const styles = {
   calendarButtonStyle: (props) => ({
+    display: 'flex',
+    alignItems: 'center',
+    cursor: 'pointer',
     padding: 10,
     fontSize: 14,
     borderRadius: 5,
     ...props.style.calendarButtonStyle
   }),
   calendarButtonImage: (props) => ({
+    paddingRight: 10,
     width: 25,
     ...props.style.calendarButtonImage
   })

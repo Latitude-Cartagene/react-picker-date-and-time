@@ -8,9 +8,8 @@ const styles = {
   inputsHours: (props) => ({
     display: 'flex',
     outline: 'none',
-    padding: [0, 10],
+    padding: '0 10px',
     fontSize: 14,
-    boxShadow: '0 0 10px rgba(0, 0, 0, 0.4)',
     borderRadius: 5,
     alignItems: 'center',
     ...props.style.inputsHours
@@ -18,7 +17,7 @@ const styles = {
   colon: (props) => ({
     display: 'flex',
     alignItems: 'center',
-    padding: [5, 0],
+    paddingRight: '5px',
     ...props.style.colon
   }),
   '@global': (props) => ({
@@ -51,14 +50,6 @@ class Time extends Component {
     this.setState({ hoursValue }, () => {
       getSelectedHours(hoursValue.value, systemUS ? this.state.meridiemValue.value : null)
     })
-  }
-
-  handleChangeInput = (input) => {
-    const isNum = /^\d+$/.test(input)
-    if (!isNum) {
-      input = input.replace(/\D/g, '')
-    }
-    return input
   }
 
   handleChangeMinutes = (minutesValue) => {
@@ -123,7 +114,7 @@ class Time extends Component {
   }
 
   renderInput = (element) => {
-    const { style } = this.props
+    const { style, isMobile } = this.props
     // TODO add props with translated
     const noResult = 'Pas de résultat.'
     const customStyles = {
@@ -136,9 +127,9 @@ class Time extends Component {
         ...provided,
         ...style.container
       }),
-      control: () => ({
+      control: (provided) => ({
+        ...provided,
         display: 'flex',
-        padding: '0 15px',
         border: 'none',
         backgroundColor: 'none',
         borderRadius: 'none',
@@ -182,14 +173,13 @@ class Time extends Component {
       }),
       menu: (provided) => ({
         ...provided,
-        position: 'absolute',
-        zIndex: 9,
-        width: 35,
+        top: isMobile ? provided.top : 'initial',
+        position: isMobile ? 'absolute' : 'fixed',
+        width: 'auto',
         ...style.menu
       }),
       menuList: (provided) => ({
         ...provided,
-        zIndex: 9,
         overflowX: 'hidden',
         ...style.menuList
       }),
@@ -211,7 +201,6 @@ class Time extends Component {
       }),
       option: (provided) => ({
         ...provided,
-        paddingLeft: 5,
         '&:hover': {
           backgroundColor: style.first,
           color: luminance(style.first) > 0.5 ? '#333' : '#fff',
@@ -223,8 +212,7 @@ class Time extends Component {
         ...provided,
         ...style.placeholder
       }),
-      singleValue: (provided) => ({
-        ...provided,
+      singleValue: () => ({
         ...style.singleValue
       }),
       valueContainer: (provided) => ({
@@ -237,14 +225,14 @@ class Time extends Component {
 
     return (
       <Select
+        menuPlacement={isMobile ? 'top' : 'auto'}
         styles={customStyles}
         className={'basic-single-' + element}
         classNamePrefix={'select-' + element}
         name={element}
-        isClearable={element !== 'meridiem'}
-        isSearchable={element !== 'meridiem'}
+        isClearable={false}
+        isSearchable={false}
         noOptionsMessage={() => noResult}
-        onInputChange={(input) => this.handleChangeInput(input)}
         onChange={element === 'hours' ? this.handleChangeHours : element === 'minutes' ? this.handleChangeMinutes : this.handleChangeMeridiem}
         value={this.state[element + 'Value']}
         options={this.state[element]}
