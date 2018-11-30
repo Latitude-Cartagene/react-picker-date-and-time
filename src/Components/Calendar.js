@@ -169,22 +169,22 @@ class Calendar extends Component {
     const { classes } = this.props
 
     return (
-      <section className={ classes.calendar }>
-        <header className={ classes.header }>
-          <div className={ classes.monthDisplay }>
-            <span className={ classes.previous } onClick={ () => this.changeMonth('previous') }>&lt;</span>
+      <section className={classes.calendar}>
+        <header className={classes.header}>
+          <div className={classes.monthDisplay}>
+            <span className={classes.previous} onClick={() => this.changeMonth('previous')}>&lt;</span>
             { this.renderMonthLabel() }
-            <span className={ classes.next } onClick={ () => this.changeMonth() }>&gt;</span>
+            <span className={classes.next} onClick={() => this.changeMonth()}>&gt;</span>
           </div>
-          <div className={ classes.weekDays }>
+          <div className={classes.weekDays}>
             { this.state.days.map(day => {
-              return <span key={ day } className={ classes.weekDay }>{ day.charAt(0) }</span>
+              return <span key={day} className={classes.weekDay}>{day.charAt(0)}</span>
             }) }
           </div>
         </header>
         { this.renderWeeks() }
-        <footer className={ classes.todayButton } onClick={ () => this.selectDay(moment(), true) }>
-          TODAY
+        <footer className={classes.todayButton} onClick={() => this.selectDay(moment(), true)}>
+          Aujourd'hui
         </footer>
       </section>
     )

@@ -7,7 +7,7 @@ const styles = {
   day: (props) => ({
     flex: 1,
     fontSize: '1rem',
-    padding: [5, 0],
+    padding: '5px 0',
     alignItems: 'center',
     cursor: 'pointer',
     ...props.style.day
