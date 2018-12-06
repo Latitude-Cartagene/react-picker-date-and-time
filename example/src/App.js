@@ -14,8 +14,8 @@ export default class App extends Component {
 
   getSelectedHours = (hours, meridiem) => {
     if (hours <= 12 && meridiem) {
-      if (meridiem === "PM" ){
-        hours += 12;
+      if (meridiem === 'PM') {
+        hours += 12
       }
     }
     this.setState({selectedHours: hours})
@@ -28,7 +28,7 @@ export default class App extends Component {
   render() {
     // TODO font style
     const style = {
-      first: '#005E86',
+      first: '#005E86'
     }
 
     return (
@@ -38,6 +38,7 @@ export default class App extends Component {
           style={style}
           systemUS={false}
           image={"assets/calendar.svg"}
+          setDate={"20191001"}
           getSelectedDate={this.getSelectedDate}
         />
         <div>

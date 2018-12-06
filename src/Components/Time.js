@@ -53,7 +53,10 @@ class Time extends Component {
   }
 
   handleChangeMinutes = (minutesValue) => {
-    this.setState({ minutesValue })
+    const { getSelectedMinutes } = this.props
+    this.setState({ minutesValue }, () => {
+      getSelectedMinutes(minutesValue.value)
+    })
   }
 
   handleChangeMeridiem = (meridiemValue) => {

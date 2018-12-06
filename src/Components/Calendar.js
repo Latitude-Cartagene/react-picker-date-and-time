@@ -109,7 +109,7 @@ class Calendar extends Component {
     const month = this.state.month
 
     const monthToDisplay = month.format('MMMM YYYY')
-    return <span className={ classes.monthSelected }>{ monthToDisplay }</span>
+    return <span className={classes.monthSelected}>{ monthToDisplay }</span>
   }
 
   renderWeeks = () => {
@@ -141,7 +141,7 @@ class Calendar extends Component {
   }
 
   componentWillMount() {
-    const { lang } = this.props
+    const { dateSelected, lang } = this.props
     moment.locale(lang)
 
     const days = []
@@ -161,7 +161,7 @@ class Calendar extends Component {
     this.setState({
       days: days.concat(daysToMove),
       month: moment(),
-      selected: moment().startOf('day'),
+      selected: dateSelected ? dateSelected : moment().startOf('day'),
     })
   }
 

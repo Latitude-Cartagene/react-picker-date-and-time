@@ -28,12 +28,16 @@ class DateCalendar extends Component {
   }
 
   componentWillMount() {
-    const { getSelectedDate } = this.props
+    const { getSelectedDate, setDate } = this.props
     const now = moment().set({ hour: 0, minute: 0, second: 0, millisecond: 0 })
 
-    this.setState({ inputDate: now }, () => {
-      getSelectedDate(now)
-    })
+    if (setDate) {
+      this.setState({ inputDate: moment(setDate) })
+    } else {
+      this.setState({ inputDate: now }, () => {
+        getSelectedDate(now)
+      })
+    }
   }
 
   changeInputDate = (date) => {
@@ -69,6 +73,7 @@ class DateCalendar extends Component {
         <Calendar
           changeInputDate={this.changeInputDate}
           display={this.state.displayCalendar}
+          dateSelected={this.state.inputDate}
           lang={lang}
           style={style}
           systemUS={systemUS}
