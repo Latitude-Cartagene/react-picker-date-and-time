@@ -40,6 +40,7 @@ export default class App extends Component {
           image={"assets/calendar.svg"}
           setDate={"20191001"}
           getSelectedDate={this.getSelectedDate}
+          todayTxt={"AuJoUrDhUi"}
         />
         <div>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse dictum odio id dui mattis, vel fermentum ex tempor. Aliquam venenatis in arcu a maximus. Maecenas tempus ac neque eget sollicitudin. Vestibulum interdum pretium pulvinar. Praesent lobortis aliquet placerat. Curabitur efficitur consectetur quam, nec interdum mauris dignissim sit amet. Praesent eros dolor, iaculis in convallis at, scelerisque quis enim. Pellentesque at turpis quis felis dapibus ullamcorper. Nunc vel luctus mi, eu congue neque.

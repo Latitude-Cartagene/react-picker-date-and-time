@@ -53,12 +53,12 @@ class DateCalendar extends Component {
   }
 
   render() {
-    const { classes, lang, style, systemUS, image } = this.props
+    const { classes, lang, style, systemUS, image, todayTxt } = this.props
 
     const day = this.state.inputDate
     let date = systemUS ? this.state.inputDate.format('MM/DD/YYYY') : this.state.inputDate.format('DD/MM/YYYY')
     if (day.format('DD/MM/YYYY') === moment().format('DD/MM/YYYY')) {
-      date = 'AUJOURD\'HUI'
+      date = todayTxt
     }
 
     return (
@@ -77,6 +77,7 @@ class DateCalendar extends Component {
           lang={lang}
           style={style}
           systemUS={systemUS}
+          todayTxt={todayTxt}
         />
       </ClickOutside>
     )}

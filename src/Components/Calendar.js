@@ -166,7 +166,7 @@ class Calendar extends Component {
   }
 
   render() {
-    const { classes } = this.props
+    const { classes, todayTxt } = this.props
 
     return (
       <section className={classes.calendar}>
@@ -184,7 +184,7 @@ class Calendar extends Component {
         </header>
         { this.renderWeeks() }
         <footer className={classes.todayButton} onClick={() => this.selectDay(moment(), true)}>
-          Aujourd'hui
+          { todayTxt }
         </footer>
       </section>
     )
