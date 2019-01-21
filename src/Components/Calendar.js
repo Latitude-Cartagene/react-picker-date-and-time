@@ -27,20 +27,21 @@ const styles = {
     marginTop: 5,
     ...props.style.calendar
   }),
-  '@media screen and (max-width: 400px)': {
+  '@media screen and (max-width: 600px)': {
     calendar: {
-      width: '100% !important'
+      width: 'auto !important'
     }
   },
   monthDisplay: (props) => ({
-    backgroundColor: props.style.secondary ? props.style.secondary : '#d1d3d1',
-    color: luminance(props.style.secondary ? props.style.secondary : '#d1d3d1') > 0.5 ? '#333' : '#fff',
+    backgroundColor: props.style.secondary ? props.style.secondary : '#fff',
+    color: luminance(props.style.secondary ? props.style.secondary : '#fff') > 0.5 ? '#333' : '#fff',
     textTransform: 'capitalize',
     alignItems: 'center',
     padding: 10,
     display: 'flex',
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
+    borderBottom: '1px solid rgba(0, 0, 0, 0.08)',
     ...props.style.monthDisplay,
   }),
   monthSelected: (props) => ({
@@ -50,7 +51,7 @@ const styles = {
     ...props.style.monthSelected,
   }),
   previous: (props) => ({
-    background: 'url("data:image/svg+xml;utf8,<svg width=\'100%\' height=\'100%\' viewBox=\'0 0 13 21\' version=\'1.1\' xmlns=\'http://www.w3.org/2000/svg\' xmlns:xlink=\'http://www.w3.org/1999/xlink\' xml:space=\'preserve\' xmlns:serif=\'http://www.serif.com/\' style=\'fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;\'><g transform=\'matrix(1,0,0,1,-453.702,-176.702)\'><g id=\'Page-1-Copy-10\' transform=\'matrix(-3.82857e-16,-1,1,-3.82857e-16,273,647)\'><path d=\'M453,184L460,190L467,184\' style=\'fill:none;stroke:rgb(255, 255, 255);stroke-width:1.6px;\'/></g></g></svg>") no-repeat center',
+    background: 'url("data:image/svg+xml;utf8,<svg width=\'100%\' height=\'100%\' viewBox=\'0 0 13 21\' version=\'1.1\' xmlns=\'http://www.w3.org/2000/svg\' xmlns:xlink=\'http://www.w3.org/1999/xlink\' xml:space=\'preserve\' xmlns:serif=\'http://www.serif.com/\' style=\'fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;\'><g transform=\'matrix(1,0,0,1,-453.702,-176.702)\'><g id=\'Page-1-Copy-10\' transform=\'matrix(-3.82857e-16,-1,1,-3.82857e-16,273,647)\'><path d=\'M453,184L460,190L467,184\' style=\'fill:none;stroke:#333;stroke-width:1.6px;\'/></g></g></svg>") no-repeat center',
     height: 18,
     width: 18,
     marginLeft: 10,
@@ -59,7 +60,7 @@ const styles = {
     ...props.style.previous
   }),
   next: (props) => ({
-    background: 'url("data:image/svg+xml;utf8,<svg width=\'100%\' height=\'100%\' viewBox=\'0 0 13 21\' version=\'1.1\' xmlns=\'http://www.w3.org/2000/svg\' xmlns:xlink=\'http://www.w3.org/1999/xlink\' xml:space=\'preserve\' xmlns:serif=\'http://www.serif.com/\' style=\'fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;\'><g transform=\'matrix(1,0,0,1,-453.702,-176.702)\'><g id=\'Page-1-Copy-10\' transform=\'matrix(-3.82857e-16,-1,1,-3.82857e-16,273,647)\'><path d=\'M453,184L460,190L467,184\' style=\'fill:none;stroke:rgb(255, 255, 255);stroke-width:1.6px;\'/></g></g></svg>") no-repeat center',
+    background: 'url("data:image/svg+xml;utf8,<svg width=\'100%\' height=\'100%\' viewBox=\'0 0 13 21\' version=\'1.1\' xmlns=\'http://www.w3.org/2000/svg\' xmlns:xlink=\'http://www.w3.org/1999/xlink\' xml:space=\'preserve\' xmlns:serif=\'http://www.serif.com/\' style=\'fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;\'><g transform=\'matrix(1,0,0,1,-453.702,-176.702)\'><g id=\'Page-1-Copy-10\' transform=\'matrix(-3.82857e-16,-1,1,-3.82857e-16,273,647)\'><path d=\'M453,184L460,190L467,184\' style=\'fill:none;stroke:#333;stroke-width:1.6px;\'/></g></g></svg>") no-repeat center',
     height: 18,
     width: 18,
     marginRight: 10,
@@ -68,6 +69,7 @@ const styles = {
   }),
   weekDays: (props) => ({
     display: 'flex',
+    background: '#fafafa',
     ...props.style.weekDays,
   }),
   weekDay: (props) => ({
@@ -79,12 +81,14 @@ const styles = {
     ...props.style.weekDay,
   }),
   todayButton: (props) => ({
-    backgroundColor: props.style.secondary ? props.style.secondary : '#d1d3d1',
-    color: luminance(props.style.secondary ? props.style.secondary : '#d1d3d1') > 0.5 ? '#333' : '#fff',
+    backgroundColor: props.style.secondary ? props.style.secondary : '#fafafa',
+    color: luminance(props.style.secondary ? props.style.secondary : '#fafafa') > 0.5 ? '#333' : '#fff',
     cursor: 'pointer',
-    padding: 5,
+    padding: 10,
+    fontSize: '0.9em',
     borderBottomLeftRadius: 10,
     borderBottomRightRadius: 10,
+    borderTop: '1px solid rgba(0, 0, 0, 0.08)',
     ...props.style.todayButton,
   }),
 }
