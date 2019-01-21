@@ -9,13 +9,15 @@ import React, { Component } from 'react'
 import withStyles from 'react-jss'
 import Week from './Week'
 
+const arrow = require('../assets/itemArrow.svg')
+
 const styles = {
   calendar: (props) => ({
     position: 'absolute',
     display: props.display ? 'flex' : 'none',
     flexDirection: 'column',
     background: 'white',
-    width: 360,
+    width: '300px',
     fontSize: '1rem',
     fontFamily: '\'Open Sans\', sans-serif',
     textAlign: 'center',
@@ -27,55 +29,66 @@ const styles = {
     marginTop: 5,
     ...props.style.calendar
   }),
+  '@media screen and (max-width: 400px)': {
+    calendar: {
+      width: '100% !important'
+    }
+  },
   monthDisplay: (props) => ({
-    fontSize: '1.3rem',
-    backgroundColor: props.style.first,
-    color: luminance(props.style.first) > 0.5 ? '#333' : '#fff',
-    textTransform: 'uppercase',
+    backgroundColor: props.style.secondary ? props.style.secondary : '#d1d3d1',
+    color: luminance(props.style.secondary ? props.style.secondary : '#d1d3d1') > 0.5 ? '#333' : '#fff',
+    textTransform: 'capitalize',
     alignItems: 'center',
     padding: 10,
     display: 'flex',
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
-    ...props.style.monthDisplay
+    ...props.style.monthDisplay,
   }),
   monthSelected: (props) => ({
     flex: 1,
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
-    ...props.style.monthSelected
+    ...props.style.monthSelected,
   }),
   previous: (props) => ({
+    background: 'url(' + arrow + ') no-repeat center',
+    height: 18,
+    width: 18,
     marginLeft: 10,
     cursor: 'pointer',
+    transform: 'rotate(180deg)',
     ...props.style.previous
   }),
   next: (props) => ({
+    background: 'url(' + arrow + ') no-repeat center',
+    height: 18,
+    width: 18,
     marginRight: 10,
     cursor: 'pointer',
     ...props.style.next
   }),
   weekDays: (props) => ({
     display: 'flex',
-    ...props.style.weekDays
+    ...props.style.weekDays,
   }),
   weekDay: (props) => ({
-    color: props.style.first,
+    fontWeight: 600,
     padding: 3,
     textAlign: 'center',
     textTransform: 'uppercase',
     width: '100%',
-    ...props.style.weekDay
+    ...props.style.weekDay,
   }),
   todayButton: (props) => ({
-    backgroundColor: props.style.first,
-    color: luminance(props.style.first) > 0.5 ? '#333' : '#fff',
+    backgroundColor: props.style.secondary ? props.style.secondary : '#d1d3d1',
+    color: luminance(props.style.secondary ? props.style.secondary : '#d1d3d1') > 0.5 ? '#333' : '#fff',
     cursor: 'pointer',
     padding: 5,
     borderBottomLeftRadius: 10,
     borderBottomRightRadius: 10,
-    ...props.style.todayButton
-  })
+    ...props.style.todayButton,
+  }),
 }
 
 class Calendar extends Component {
@@ -109,7 +122,7 @@ class Calendar extends Component {
     const month = this.state.month
 
     const monthToDisplay = month.format('MMMM YYYY')
-    return <span className={classes.monthSelected}>{ monthToDisplay }</span>
+    return <span className={ classes.monthSelected }>{ monthToDisplay }</span>
   }
 
   renderWeeks = () => {
@@ -123,12 +136,12 @@ class Calendar extends Component {
     while (!done) {
       weeks.push(
         <Week key={ date }
-              date={ date.clone() }
-              selectDay={ (day) => this.selectDay(day) }
-              selectedMonth={ this.state.month }
-              selected={ this.state.selected }
-              style={ style }
-        />,
+          date={ date.clone() }
+          selectDay={ (day) => this.selectDay(day) }
+          selectedMonth={ this.state.month }
+          selected={ this.state.selected }
+          style={ style }
+        />
       )
 
       date.add(1, 'w')
@@ -169,21 +182,21 @@ class Calendar extends Component {
     const { classes, todayTxt } = this.props
 
     return (
-      <section className={classes.calendar}>
-        <header className={classes.header}>
-          <div className={classes.monthDisplay}>
-            <span className={classes.previous} onClick={() => this.changeMonth('previous')}>&lt;</span>
+      <section className={ classes.calendar }>
+        <header className={ classes.header }>
+          <div className={ classes.monthDisplay }>
+            <span className={ classes.previous } onClick={ () => this.changeMonth('previous') }/>
             { this.renderMonthLabel() }
-            <span className={classes.next} onClick={() => this.changeMonth()}>&gt;</span>
+            <span className={ classes.next } onClick={ () => this.changeMonth() }/>
           </div>
-          <div className={classes.weekDays}>
+          <div className={ classes.weekDays }>
             { this.state.days.map(day => {
-              return <span key={day} className={classes.weekDay}>{day.charAt(0)}</span>
+              return <span key={ day } className={ classes.weekDay }>{ day.charAt(0) }</span>
             }) }
           </div>
         </header>
         { this.renderWeeks() }
-        <footer className={classes.todayButton} onClick={() => this.selectDay(moment(), true)}>
+        <footer className={ classes.todayButton } onClick={ () => this.selectDay(moment(), true) }>
           { todayTxt }
         </footer>
       </section>

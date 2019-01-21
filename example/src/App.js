@@ -28,7 +28,8 @@ export default class App extends Component {
   render() {
     // TODO font style
     const style = {
-      first: '#005E86'
+      first: '#005E86',
+      secondary: '#d70d2f'
     }
 
     return (
