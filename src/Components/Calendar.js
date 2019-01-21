@@ -9,8 +9,6 @@ import React, { Component } from 'react'
 import withStyles from 'react-jss'
 import Week from './Week'
 
-const arrow = require('../assets/itemArrow.svg')
-
 const styles = {
   calendar: (props) => ({
     position: 'absolute',
@@ -52,7 +50,7 @@ const styles = {
     ...props.style.monthSelected,
   }),
   previous: (props) => ({
-    background: 'url(' + arrow + ') no-repeat center',
+    background: 'url("data:image/svg+xml;utf8,<svg width=\'100%\' height=\'100%\' viewBox=\'0 0 13 21\' version=\'1.1\' xmlns=\'http://www.w3.org/2000/svg\' xmlns:xlink=\'http://www.w3.org/1999/xlink\' xml:space=\'preserve\' xmlns:serif=\'http://www.serif.com/\' style=\'fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;\'><g transform=\'matrix(1,0,0,1,-453.702,-176.702)\'><g id=\'Page-1-Copy-10\' transform=\'matrix(-3.82857e-16,-1,1,-3.82857e-16,273,647)\'><path d=\'M453,184L460,190L467,184\' style=\'fill:none;stroke:rgb(255, 255, 255);stroke-width:1.6px;\'/></g></g></svg>") no-repeat center',
     height: 18,
     width: 18,
     marginLeft: 10,
@@ -61,7 +59,7 @@ const styles = {
     ...props.style.previous
   }),
   next: (props) => ({
-    background: 'url(' + arrow + ') no-repeat center',
+    background: 'url("data:image/svg+xml;utf8,<svg width=\'100%\' height=\'100%\' viewBox=\'0 0 13 21\' version=\'1.1\' xmlns=\'http://www.w3.org/2000/svg\' xmlns:xlink=\'http://www.w3.org/1999/xlink\' xml:space=\'preserve\' xmlns:serif=\'http://www.serif.com/\' style=\'fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;\'><g transform=\'matrix(1,0,0,1,-453.702,-176.702)\'><g id=\'Page-1-Copy-10\' transform=\'matrix(-3.82857e-16,-1,1,-3.82857e-16,273,647)\'><path d=\'M453,184L460,190L467,184\' style=\'fill:none;stroke:rgb(255, 255, 255);stroke-width:1.6px;\'/></g></g></svg>") no-repeat center',
     height: 18,
     width: 18,
     marginRight: 10,
