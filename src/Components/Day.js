@@ -6,7 +6,6 @@ import withStyles from 'react-jss'
 const styles = {
   day: (props) => ({
     flex: 1,
-    fontSize: '1rem',
     padding: '5px 0',
     alignItems: 'center',
     cursor: 'pointer',
@@ -15,11 +14,13 @@ const styles = {
   today: (props) => ({
     background: hexToRgba(props.style.first, 0.5),
     color: luminance(props.style.first) > 0.5 ? '#333' : '#fff',
+    borderRadius: 5,
     ...props.style.today
   }),
   selectedDay: (props) => ({
     background: props.style.first,
     color: luminance(props.style.first) > 0.5 ? '#333' : '#fff',
+    borderRadius: 5,
     ...props.style.selectedDay
   }),
   notInMonth: (props) => ({

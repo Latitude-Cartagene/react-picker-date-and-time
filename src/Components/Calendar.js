@@ -16,7 +16,6 @@ const styles = {
     flexDirection: 'column',
     background: 'white',
     width: '300px',
-    fontSize: '1rem',
     fontFamily: '\'Open Sans\', sans-serif',
     textAlign: 'center',
     zIndex: 10,
