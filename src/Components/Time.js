@@ -21,7 +21,6 @@ const styles = {
     ...props.style.colon
   }),
   timeButtonImage: (props) => ({
-    paddingRight: 10,
     width: 25,
     ...props.style.timeButtonImage
   }),
