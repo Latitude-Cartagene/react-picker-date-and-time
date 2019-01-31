@@ -58,6 +58,7 @@ export default class App extends Component {
           systemUS={true}
           style={style}
           isMobile={false}
+          image={"assets/calendar.svg"}
           getSelectedHours={this.getSelectedHours}
           getSelectedMinutes={this.getSelectedMinutes}
         />

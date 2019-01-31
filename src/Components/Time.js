@@ -20,6 +20,11 @@ const styles = {
     paddingRight: '5px',
     ...props.style.colon
   }),
+  timeButtonImage: (props) => ({
+    paddingRight: 10,
+    width: 25,
+    ...props.style.timeButtonImage
+  }),
   '@global': (props) => ({
     '.basic-single-meridiem': {
       display: 'flex',
@@ -223,7 +228,7 @@ class Time extends Component {
         display: 'flex',
         alignItems: 'center',
         ...style.valueContainer
-      })
+      }),
     }
 
     return (
@@ -244,10 +249,11 @@ class Time extends Component {
   }
 
   render() {
-    const { classes, systemUS } = this.props
+    const { classes, image, systemUS } = this.props
 
     return (
       <div className={classes.inputsHours}>
+        <img src={image} className={classes.timeButtonImage}/>
         { this.renderInput('hours') }<span className={classes.colon}>:</span>{ this.renderInput('minutes') }
 
         { systemUS && (
