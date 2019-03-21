@@ -39,7 +39,8 @@ export default class App extends Component {
           style={style}
           systemUS={false}
           image={"assets/calendar.svg"}
-          setDate={"20191001"}
+          arrow={"assets/arrowMonth.svg"}
+          setDate={'19700101'}
           getSelectedDate={this.getSelectedDate}
           todayTxt={"AuJoUrDhUi"}
         />

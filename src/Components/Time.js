@@ -249,7 +249,7 @@ class Time extends Component {
 
   render() {
     const { classes, image, systemUS } = this.props
-
+console.log('calendar', image)
     return (
       <div className={classes.inputsHours}>
         <img src={image} className={classes.timeButtonImage}/>

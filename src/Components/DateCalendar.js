@@ -53,7 +53,7 @@ class DateCalendar extends Component {
   }
 
   render() {
-    const { classes, lang, style, systemUS, image, todayTxt } = this.props
+    const { arrow, classes, lang, style, systemUS, image, todayTxt } = this.props
 
     const day = this.state.inputDate
     let date = systemUS ? this.state.inputDate.format('MM/DD/YYYY') : this.state.inputDate.format('DD/MM/YYYY')
@@ -75,6 +75,7 @@ class DateCalendar extends Component {
           display={this.state.displayCalendar}
           dateSelected={this.state.inputDate}
           lang={lang}
+          arrow={arrow}
           style={style}
           systemUS={systemUS}
           todayTxt={todayTxt}
