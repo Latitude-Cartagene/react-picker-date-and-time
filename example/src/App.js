@@ -35,7 +35,7 @@ export default class App extends Component {
     return (
       <div className='App'>
         <DateCalendar
-          lang={'fr'}
+          lang={'it'}
           style={style}
           systemUS={false}
           image={"assets/calendar.svg"}

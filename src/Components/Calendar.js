@@ -2,6 +2,7 @@ import { luminance } from 'luminance-js'
 import moment from 'moment'
 // TODO load all languages
 import 'moment/locale/de'
+import 'moment/locale/it'
 import 'moment/locale/en-gb'
 import 'moment/locale/es'
 import 'moment/locale/fr'
