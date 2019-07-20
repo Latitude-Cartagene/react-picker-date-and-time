@@ -2,7 +2,7 @@ import { luminance } from 'luminance-js';
 import moment from 'moment';
 import React, { Component } from 'react';
 import withStyles from 'react-jss';
-import Select from 'react-select';
+import Select from 'react-select/dist/react-select.cjs';
 
 const styles = {
   inputsHours: props => ({
