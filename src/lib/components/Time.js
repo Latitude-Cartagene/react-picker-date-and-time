@@ -1,11 +1,11 @@
-import { luminance } from 'luminance-js'
-import moment from 'moment'
-import React, { Component } from 'react'
-import withStyles from 'react-jss'
-import Select from 'react-select'
+import { luminance } from 'luminance-js';
+import moment from 'moment';
+import React, { Component } from 'react';
+import withStyles from 'react-jss';
+import Select from 'react-select';
 
 const styles = {
-  inputsHours: (props) => ({
+  inputsHours: props => ({
     display: 'flex',
     outline: 'none',
     padding: '0 10px',
@@ -14,24 +14,24 @@ const styles = {
     alignItems: 'center',
     ...props.style.inputsHours
   }),
-  colon: (props) => ({
+  colon: props => ({
     display: 'flex',
     alignItems: 'center',
     paddingRight: '5px',
     ...props.style.colon
   }),
-  timeButtonImage: (props) => ({
+  timeButtonImage: props => ({
     width: 25,
     ...props.style.timeButtonImage
   }),
-  '@global': (props) => ({
+  '@global': props => ({
     '.basic-single-meridiem': {
       display: 'flex',
       alignItems: 'center'
     },
     ...props.style.global
   })
-}
+};
 
 class Time extends Component {
   state = {
@@ -43,37 +43,37 @@ class Time extends Component {
     minutesValue: [],
     meridiem: [{ value: 'AM', label: 'AM' }, { value: 'PM', label: 'PM' }],
     meridiemValue: []
-  }
+  };
 
-  minTwoDigits = (value) => {
-    return (value < 10 ? '0' : '') + value
-  }
+  minTwoDigits = value => {
+    return (value < 10 ? '0' : '') + value;
+  };
 
-  handleChangeHours = (hoursValue) => {
-    const { getSelectedHours, systemUS } = this.props
+  handleChangeHours = hoursValue => {
+    const { getSelectedHours, systemUS } = this.props;
     this.setState({ hoursValue }, () => {
-      getSelectedHours(hoursValue.value, systemUS ? this.state.meridiemValue.value : null)
-    })
-  }
+      getSelectedHours(hoursValue.value, systemUS ? this.state.meridiemValue.value : null);
+    });
+  };
 
-  handleChangeMinutes = (minutesValue) => {
-    const { getSelectedMinutes } = this.props
+  handleChangeMinutes = minutesValue => {
+    const { getSelectedMinutes } = this.props;
     this.setState({ minutesValue }, () => {
-      getSelectedMinutes(minutesValue.value)
-    })
-  }
+      getSelectedMinutes(minutesValue.value);
+    });
+  };
 
-  handleChangeMeridiem = (meridiemValue) => {
-    this.setState({ meridiemValue })
-  }
+  handleChangeMeridiem = meridiemValue => {
+    this.setState({ meridiemValue });
+  };
 
   componentDidMount() {
-    const { getSelectedHours, getSelectedMinutes, systemUS } = this.props
-    const hours = []
-    const hoursValue = []
-    const minutes = []
-    const minutesValue = []
-    const meridiemValue = this.state.meridiem.find(meridiem => meridiem.value === moment().format('A'))
+    const { getSelectedHours, getSelectedMinutes, systemUS } = this.props;
+    const hours = [];
+    const hoursValue = [];
+    const minutes = [];
+    const minutesValue = [];
+    const meridiemValue = this.state.meridiem.find(meridiem => meridiem.value === moment().format('A'));
 
     // Treatment for hours
     if (systemUS) {
@@ -82,10 +82,10 @@ class Time extends Component {
         const value = {
           value: i,
           label: i
-        }
-        hours.push(value)
+        };
+        hours.push(value);
         if (i === parseInt(moment().format('hh'))) {
-          hoursValue.push(value)
+          hoursValue.push(value);
         }
       }
     } else {
@@ -94,10 +94,10 @@ class Time extends Component {
         const value = {
           value: this.minTwoDigits(i),
           label: this.minTwoDigits(i)
-        }
-        hours.push(value)
+        };
+        hours.push(value);
         if (i === parseInt(moment().format('HH'))) {
-          hoursValue.push(value)
+          hoursValue.push(value);
         }
       }
     }
@@ -107,34 +107,34 @@ class Time extends Component {
       const value = {
         value: this.minTwoDigits(i),
         label: this.minTwoDigits(i)
-      }
-      minutes.push(value)
+      };
+      minutes.push(value);
       if (i === parseInt(moment().format('mm'))) {
-        minutesValue.push(value)
+        minutesValue.push(value);
       }
     }
 
     this.setState({ hours, hoursValue, minutes, minutesValue, meridiemValue: systemUS ? meridiemValue : null }, () => {
-      getSelectedHours(this.state.hoursValue[0].value, meridiemValue.value)
-      getSelectedMinutes(this.state.minutesValue[0].value)
-    })
+      getSelectedHours(this.state.hoursValue[0].value, meridiemValue.value);
+      getSelectedMinutes(this.state.minutesValue[0].value);
+    });
   }
 
-  renderInput = (element) => {
-    const { style, isMobile } = this.props
+  renderInput = element => {
+    const { style, isMobile } = this.props;
     // TODO add props with translated
-    const noResult = 'Pas de résultat.'
+    const noResult = 'Pas de résultat.';
     const customStyles = {
-      clearIndicator: (provided) => ({
+      clearIndicator: provided => ({
         ...provided,
         display: 'none',
         ...style.clearIndicator
       }),
-      container: (provided) => ({
+      container: provided => ({
         ...provided,
         ...style.container
       }),
-      control: (provided) => ({
+      control: provided => ({
         ...provided,
         display: 'flex',
         border: 'none',
@@ -144,69 +144,69 @@ class Time extends Component {
         borderWidth: 'none',
         ...style.control
       }),
-      dropdownIndicator: (provided) => ({
+      dropdownIndicator: provided => ({
         ...provided,
         display: 'none',
         ...style.dropdownIndicator
       }),
-      group: (provided) => ({
+      group: provided => ({
         ...provided,
         ...style.group
       }),
-      groupHeading: (provided) => ({
+      groupHeading: provided => ({
         ...provided,
         ...style.groupHeading
       }),
-      indicatorsContainer: (provided) => ({
+      indicatorsContainer: provided => ({
         ...provided,
         ...style.indicatorsContainer
       }),
-      indicatorSeparator: (provided) => ({
+      indicatorSeparator: provided => ({
         ...provided,
         display: 'none',
         ...style.indicatorSeparator
       }),
-      input: (provided) => ({
+      input: provided => ({
         ...provided,
         ...style.input
       }),
-      loadingIndicator: (provided) => ({
+      loadingIndicator: provided => ({
         ...provided,
         ...style.loadingIndicator
       }),
-      loadingMessage: (provided) => ({
+      loadingMessage: provided => ({
         ...provided,
         ...style.loadingMessage
       }),
-      menu: (provided) => ({
+      menu: provided => ({
         ...provided,
         top: isMobile ? provided.top : 'initial',
         position: isMobile ? 'absolute' : 'fixed',
         width: 'auto',
         ...style.menu
       }),
-      menuList: (provided) => ({
+      menuList: provided => ({
         ...provided,
         overflowX: 'hidden',
         ...style.menuList
       }),
-      multiValue: (provided) => ({
+      multiValue: provided => ({
         ...provided,
         ...style.multiValue
       }),
-      multiValueLabel: (provided) => ({
+      multiValueLabel: provided => ({
         ...provided,
         ...style.multiValueLabel
       }),
-      multiValueRemove: (provided) => ({
+      multiValueRemove: provided => ({
         ...provided,
         ...style.multiValueRemove
       }),
-      noOptionsMessage: (provided) => ({
+      noOptionsMessage: provided => ({
         ...provided,
         ...style.noOptionsMessage
       }),
-      option: (provided) => ({
+      option: provided => ({
         ...provided,
         '&:hover': {
           backgroundColor: style.first,
@@ -215,20 +215,20 @@ class Time extends Component {
         },
         ...style.option
       }),
-      placeholder: (provided) => ({
+      placeholder: provided => ({
         ...provided,
         ...style.placeholder
       }),
       singleValue: () => ({
         ...style.singleValue
       }),
-      valueContainer: (provided) => ({
+      valueContainer: provided => ({
         ...provided,
         display: 'flex',
         alignItems: 'center',
         ...style.valueContainer
-      }),
-    }
+      })
+    };
 
     return (
       <Select
@@ -240,27 +240,33 @@ class Time extends Component {
         isClearable={false}
         isSearchable={false}
         noOptionsMessage={() => noResult}
-        onChange={element === 'hours' ? this.handleChangeHours : element === 'minutes' ? this.handleChangeMinutes : this.handleChangeMeridiem}
+        onChange={
+          element === 'hours'
+            ? this.handleChangeHours
+            : element === 'minutes'
+            ? this.handleChangeMinutes
+            : this.handleChangeMeridiem
+        }
         value={this.state[element + 'Value']}
         options={this.state[element]}
       />
-    )
-  }
+    );
+  };
 
   render() {
-    const { classes, image, systemUS } = this.props
-console.log('calendar', image)
+    const { classes, image, systemUS } = this.props;
+    console.log('calendar', image);
     return (
       <div className={classes.inputsHours}>
-        <img src={image} className={classes.timeButtonImage}/>
-        { this.renderInput('hours') }<span className={classes.colon}>:</span>{ this.renderInput('minutes') }
+        <img src={image} className={classes.timeButtonImage} alt="time" />
+        {this.renderInput('hours')}
+        <span className={classes.colon}>:</span>
+        {this.renderInput('minutes')}
 
-        { systemUS && (
-          this.renderInput('meridiem')
-        ) }
+        {systemUS && this.renderInput('meridiem')}
       </div>
-    )
+    );
   }
 }
 
-export default withStyles(styles)(Time)
+export default withStyles(styles)(Time);
