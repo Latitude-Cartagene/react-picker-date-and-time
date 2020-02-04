@@ -19,7 +19,7 @@ const styles = {
     width: '300px',
     fontFamily: "'Open Sans', sans-serif",
     textAlign: 'center',
-    zIndex: 10,
+    zIndex: 9999,
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
     borderBottomLeftRadius: 10,
