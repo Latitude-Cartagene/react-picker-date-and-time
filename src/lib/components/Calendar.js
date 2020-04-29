@@ -107,14 +107,36 @@ class Calendar extends Component {
   };
 
   selectDay = (day, today = false) => {
-    const { changeInputDate } = this.props;
-    if (today) {
-      // We set time at 00:00:00 for compare with others days
-      day.set({ hour: 0, minute: 0, second: 0, millisecond: 0 });
-      this.setState({ selected: day, month: day.clone() }, () => changeInputDate(day));
-    } else {
-      this.setState({ selected: day.date, month: day.date.clone() }, () => changeInputDate(day.date));
+    const { changeInputDate, minDate, maxDate } = this.props;
+
+    let canSelectDate = true
+    if(minDate !== undefined && maxDate !== undefined){
+      let startDate = moment(minDate)
+      let endDate = moment(maxDate)
+      if(day.date >= startDate && day.date <= endDate) canSelectDate = true
+      else canSelectDate = false
     }
+    else if(minDate !== undefined && maxDate === undefined){
+      let startDate = moment(minDate)
+      if(day.date >= startDate) canSelectDate = true
+      else canSelectDate = false
+    }
+    else if(minDate === undefined && maxDate !== undefined){
+      let endDate = moment(maxDate)
+      if(day.date <= endDate) canSelectDate = true
+      else canSelectDate = false
+    }
+    
+    if(canSelectDate){
+      if (today) {
+        // We set time at 00:00:00 for compare with others days
+        day.set({ hour: 0, minute: 0, second: 0, millisecond: 0 });
+        this.setState({ selected: day, month: day.clone() }, () => changeInputDate(day));
+      } else {
+        this.setState({ selected: day.date, month: day.date.clone() }, () => changeInputDate(day.date));
+      }
+    }
+
   };
 
   renderMonthLabel = () => {
@@ -126,7 +148,7 @@ class Calendar extends Component {
   };
 
   renderWeeks = () => {
-    const { style } = this.props;
+    const { style, minDate, maxDate } = this.props;
     const weeks = [];
     let done = false;
     let date = this.state.month
@@ -150,6 +172,8 @@ class Calendar extends Component {
           selectedMonth={this.state.month}
           selected={this.state.selected}
           style={style}
+          minDate={minDate}
+          maxDate={maxDate}
         />
       );
 

@@ -2,6 +2,7 @@ import hexToRgba from 'hex-to-rgba';
 import { luminance } from 'luminance-js';
 import React, { Component } from 'react';
 import withStyles from 'react-jss';
+import moment from 'moment'
 
 const styles = {
   day: props => ({
@@ -24,25 +25,54 @@ const styles = {
     ...props.style.selectedDay
   }),
   notInMonth: props => ({
-    filter: 'opacity(50%)',
+    filter: 'opacity(60%)',
     ...props.style.notInMonth
+  }),
+  cantSelectDay: props => ({
+    textDecoration:'line-through',
+    filter: 'opacity(40%)',
+    ...props.style.cantSelectDay
   })
 };
 
 class Day extends Component {
   render() {
-    const { classes, day, selected, selectDay, selectedMonth } = this.props;
+    const { classes, day, selected, selectDay, selectedMonth, minDate, maxDate } = this.props;
+
+    console.log(day)
+    // console.log(minDate, maxDate)
 
     const isSelected = day.date.isSame(selected);
     const isToday = day.isToday;
     const isInMonth = day.date.format('MMMM') === selectedMonth.format('MMMM');
+
+    let canSelectDate = true
+    if(minDate !== undefined && maxDate !== undefined){
+      let startDate = moment(minDate)
+      let endDate = moment(maxDate)
+      if(day.date >= startDate && day.date <= endDate) canSelectDate = true
+      else canSelectDate = false
+    }
+    else if(minDate !== undefined && maxDate === undefined){
+      let startDate = moment(minDate)
+      if(day.date >= startDate) canSelectDate = true
+      else canSelectDate = false
+    }
+    else if(minDate === undefined && maxDate !== undefined){
+      let endDate = moment(maxDate)
+      if(day.date <= endDate) canSelectDate = true
+      else canSelectDate = false
+    }
+    
 
     return (
       <span
         key={day.date.toString()}
         className={[
           classes.day,
-          !isInMonth
+          !canSelectDate
+          ? classes.cantSelectDay
+            : !isInMonth
             ? classes.notInMonth
             : isSelected
             ? classes.selectedDay
@@ -50,7 +80,7 @@ class Day extends Component {
             ? classes.today
             : ''
         ].join(' ')}
-        onClick={() => selectDay(day)}>
+        onClick={() => canSelectDate ? selectDay(day) : function(){}}>
         {day.number}
       </span>
     );

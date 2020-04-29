@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import withStyles from 'react-jss';
 import Day from './Day';
+import { min } from 'moment';
 
 const styles = {
   week: props => ({
@@ -14,7 +15,7 @@ class Week extends Component {
     let days = [];
     let { date } = this.props;
 
-    const { classes, selected, selectDay, selectedMonth, style } = this.props;
+    const { classes, selected, selectDay, selectedMonth, style, minDate, maxDate } = this.props;
 
     for (let i = 0; i < 7; i++) {
       let day = {
@@ -31,6 +32,8 @@ class Week extends Component {
           selectDay={selectDay}
           selectedMonth={selectedMonth}
           style={style}
+          minDate={minDate}
+          maxDate={maxDate}
         />
       );
 

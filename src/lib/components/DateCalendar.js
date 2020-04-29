@@ -28,8 +28,13 @@ class DateCalendar extends Component {
   };
 
   componentWillMount() {
-    const { getSelectedDate, setDate } = this.props;
-    const now = moment().set({ hour: 0, minute: 0, second: 0, millisecond: 0 });
+    const { getSelectedDate, setDate, minDate } = this.props;
+    let now = moment().set({ hour: 0, minute: 0, second: 0, millisecond: 0 });
+
+    if(minDate !== undefined){
+      let startDate = moment(minDate).set({ hour: 0, minute: 0, second: 0, millisecond: 0 })
+      if(now < startDate) now = startDate
+    }
 
     if (setDate) {
       this.setState({ inputDate: moment(setDate) });
@@ -53,7 +58,7 @@ class DateCalendar extends Component {
   };
 
   render() {
-    const { arrow, classes, lang, style, systemUS, image, todayTxt } = this.props;
+    const { arrow, classes, lang, style, systemUS, image, todayTxt, minDate, maxDate } = this.props;
 
     const day = this.state.inputDate;
     let date = systemUS ? this.state.inputDate.format('MM/DD/YYYY') : this.state.inputDate.format('DD/MM/YYYY');
@@ -77,6 +82,8 @@ class DateCalendar extends Component {
           style={style}
           systemUS={systemUS}
           todayTxt={todayTxt}
+          minDate={minDate}
+          maxDate={maxDate}
         />
       </ClickOutside>
     );

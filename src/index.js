@@ -33,7 +33,7 @@ const PluginExample = () => {
   return (
     <div className="App">
       <DateCalendar
-        lang={'it'}
+        lang={'fr'}
         style={style}
         systemUS={false}
         image={'assets/calendar.svg'}
