@@ -39,9 +39,6 @@ class Day extends Component {
   render() {
     const { classes, day, selected, selectDay, selectedMonth, minDate, maxDate } = this.props;
 
-    console.log(day)
-    // console.log(minDate, maxDate)
-
     const isSelected = day.date.isSame(selected);
     const isToday = day.isToday;
     const isInMonth = day.date.format('MMMM') === selectedMonth.format('MMMM');
