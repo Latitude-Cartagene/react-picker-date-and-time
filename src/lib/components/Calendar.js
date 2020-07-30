@@ -186,7 +186,7 @@ class Calendar extends Component {
     return weeks;
   };
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     const { dateSelected, lang } = this.props;
     moment.locale(lang);
 

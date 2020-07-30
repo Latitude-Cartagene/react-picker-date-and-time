@@ -27,7 +27,7 @@ class DateCalendar extends Component {
     inputDate: null
   };
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     const { getSelectedDate, setDate, minDate } = this.props;
     let now = moment().set({ hour: 0, minute: 0, second: 0, millisecond: 0 });
 
