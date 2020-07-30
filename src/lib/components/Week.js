@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import withStyles from 'react-jss';
 import Day from './Day';
-import { min } from 'moment';
 
 const styles = {
   week: props => ({
