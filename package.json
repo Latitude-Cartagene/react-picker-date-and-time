@@ -1,12 +1,15 @@
 {
-  "name": "react-picker-date-and-time",
+  "name": "@latitude-cartagene/react-picker-date-and-time",
   "version": "2.3.0",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "description": "React picker for date and for time",
   "author": "Latitude-Cartagene",
   "license": "MIT",
-  "repository": "Latitude-Cartagene/react-picker-date-and-time",
+  "repository": "git://github.com/Latitude-Cartagene/react-picker-date-and-time",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/Latitude-Cartagene"
+  },
   "files": [
     "dist"
   ],
