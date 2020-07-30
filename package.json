@@ -1,6 +1,6 @@
 {
   "name": "react-picker-date-and-time",
-  "version": "2.2.3",
+  "version": "2.3.0",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "description": "React picker for date and for time",
