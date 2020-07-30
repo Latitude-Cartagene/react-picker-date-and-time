@@ -23,13 +23,6 @@ const styles = {
   timeButtonImage: props => ({
     width: 25,
     ...props.style.timeButtonImage
-  }),
-  '@global': props => ({
-    '.basic-single-meridiem': {
-      display: 'flex',
-      alignItems: 'center'
-    },
-    ...props.style.global
   })
 };
 
