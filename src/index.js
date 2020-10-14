@@ -41,6 +41,7 @@ const PluginExample = () => {
         setDate={date}
         getSelectedDate={getSelectedDate}
         todayTxt={'AuJoUrDhUi'}
+        callback={(isOpen) => console.log("test", isOpen)}
       />
       <div>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse dictum odio id dui mattis, vel fermentum ex

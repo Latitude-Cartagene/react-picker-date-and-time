@@ -54,7 +54,13 @@ class DateCalendar extends Component {
   };
 
   toggleCalendar = (open = false) => {
+    const { callback } = this.props;
+
     this.setState({ displayCalendar: open });
+
+    if (callback && typeof callback === "function") {
+      callback(open);
+    }
   };
 
   render() {
