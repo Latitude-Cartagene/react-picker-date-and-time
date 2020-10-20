@@ -106,8 +106,8 @@ class Calendar extends Component {
     });
   };
 
-  selectDay = (day, today = false) => {
-    const { changeInputDate, minDate, maxDate } = this.props;
+  canSelectDate = (day) => {
+    const { minDate, maxDate } = this.props;
 
     let canSelectDate = true
     if(minDate !== undefined && maxDate !== undefined){
@@ -126,8 +126,13 @@ class Calendar extends Component {
       if(day.date <= endDate) canSelectDate = true
       else canSelectDate = false
     }
+    return canSelectDate;
+  }
+
+  selectDay = (day, today = false) => {
+    const { changeInputDate } = this.props;
     
-    if(canSelectDate){
+    if(this.canSelectDate(day)){
       if (today) {
         // We set time at 00:00:00 for compare with others days
         day.set({ hour: 0, minute: 0, second: 0, millisecond: 0 });
@@ -241,9 +246,10 @@ class Calendar extends Component {
           </div>
         </header>
         {this.renderWeeks()}
-        <footer className={classes.todayButton} onClick={() => this.selectDay(moment(), true)}>
-          {todayTxt}
-        </footer>
+        {this.canSelectDate(moment())}
+          <footer className={classes.todayButton} onClick={() => this.selectDay(moment(), true)}>
+            {todayTxt}
+          </footer>
       </section>
     );
   }
