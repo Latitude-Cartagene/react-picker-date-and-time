@@ -246,10 +246,11 @@ class Calendar extends Component {
           </div>
         </header>
         {this.renderWeeks()}
-        {this.canSelectDate(moment())}
+        {this.canSelectDate(moment()) && 
           <footer className={classes.todayButton} onClick={() => this.selectDay(moment(), true)}>
             {todayTxt}
           </footer>
+        }
       </section>
     );
   }
